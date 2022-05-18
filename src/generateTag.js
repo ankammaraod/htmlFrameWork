@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 const format = (value) => {
   return Object.entries(value).map(
     ([property, value]) => property + ':' + value + ';'
@@ -20,9 +19,13 @@ const closing = (tag) => {
 
 const html = ([tag, attribute, ...content]) => {
   const formattedAttr = stringify(attribute);
-  const newContent = content.map(element => Array.isArray(element) ? html(element) : element).join('');
+  const newContent = content.map(
+    element => Array.isArray(element) ? html(element) : element
+  ).join('');
 
   return '<' + tag + ' ' + formattedAttr + '>' + newContent + closing(tag);
 };
 
 exports.html = html;
+exports.closing = closing;
+exports.stringify = stringify;
